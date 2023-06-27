@@ -1,0 +1,4 @@
+image: asralis/rust-pvc:1.0.0
+replicaCount: 1
+service:
+  internalPort: 8080

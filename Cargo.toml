@@ -6,5 +6,14 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-kube = { version = "0.83.0", features = ["runtime", "derive"] }
+kube = { version = "0.83.0", default-features = false, features = [
+    "runtime",
+    "derive",
+    "client",
+    "rustls-tls",
+] }
 k8s-openapi = { version = "0.18.0", features = ["v1_26"] }
+futures = "0.3.28"
+tokio = { version = "1.28.2", features = ["rt", "macros", "rt-multi-thread"] }
+warp = "0.3.5"
+serde = { version = "1.0.164", features = ["derive"] }

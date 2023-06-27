@@ -26,8 +26,8 @@ async fn get_pods() -> Result<Box<dyn warp::Reply>, warp::Rejection> {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let ready = warp::path!("ready").map(|| "Ok");
-    let live = warp::path!("live").map(|| "Ok");
+    let ready = warp::path!("ready").map(|| StatusCode::OK);
+    let live = warp::path!("live").map(|| StatusCode::OK);
     let pods = warp::path!("pods").and_then(get_pods);
     let api = warp::get().and(ready.or(live).or(pods));
     warp::serve(api).run(([127, 0, 0, 1], 8080)).await;

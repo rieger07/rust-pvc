@@ -30,7 +30,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let live = warp::path!("live").map(|| StatusCode::OK);
     let pods = warp::path!("pods").and_then(get_pods);
     let api = warp::get().and(ready.or(live).or(pods));
-    warp::serve(api).run(([127, 0, 0, 1], 8080)).await;
+    warp::serve(api).run(([0, 0, 0, 0], 8080)).await;
     // Infer the runtime environment and try to create a Kubernetes Client
 
     Ok(())
